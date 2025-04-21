@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\KategoriController;
+use App\Http\Controllers\PdfController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\BukuController;
 use Illuminate\Support\Facades\Auth;
@@ -37,6 +38,7 @@ Route::get('/buku/{id}/edit',[BukuController::class,'edit'])->name('buku.edit');
 Route::put('/buku/{id}', [BukuController::class, 'update'])->name('buku.update');
 Route::delete('/buku/{id}', [BukuController::class, 'destroy'])->name('buku.destroy');
 
+
 Route::get('/member',[MemberController::class,'index'])->name( 'member.index');
 Route::get('/member/create',[MemberController::class,'create'])->name('member.create');
 Route::post('/member',[MemberController::class,'store'])->name('member.store');
@@ -70,4 +72,6 @@ Route::post('/logout', function () {
     Auth::logout();
     return redirect('/');
 })->name('logout');
+
+Route::get('/laporan-pdf', [PdfController::class, 'generatePDF']);
 
